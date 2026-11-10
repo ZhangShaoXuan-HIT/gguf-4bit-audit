@@ -207,7 +207,7 @@ def figure1() -> None:
     ax.set_ylim(0.15, 0.93)
     ax.set_xlabel("quantization level  (8-bit → 2-bit)")
     ax.set_ylabel("accuracy (4-task mean)")
-    ax.set_title("Accuracy falls earlier, and further, for smaller models",
+    ax.set_title("The 4-bit step is not the same step for every model",
                  loc="left", pad=21, fontweight="bold")
     series_legend(ax)
     panel_label(ax, "a")
@@ -357,7 +357,7 @@ def figure2() -> None:
     ax.set_ylim(0.12, 0.60)
     ax.set_xlabel("quantization level  (8-bit → 2-bit)")
     ax.set_ylabel("expected calibration error\n(lower is better)")
-    ax.set_title("Calibration error rises at the same ladder step",
+    ax.set_title("Calibration error rises at the 4-bit step in every model",
                  loc="left", pad=21, fontweight="bold")
     series_legend(ax)
     panel_label(ax, "a")
@@ -426,7 +426,7 @@ def figure2() -> None:
     ax.set_ylim(-0.75, len(cg) - 0.20)
     ax.set_xlim(-0.014, 0.108)
     ax.set_xlabel("increase in expected calibration error from Q8 to Q4")
-    ax.set_title("The calibration cost follows the accuracy gradient",
+    ax.set_title("Stated-confidence cost, ordered by size class",
                  loc="left", pad=21, fontweight="bold")
     panel_label(ax, "c", dx=-16, dy=10)
 
