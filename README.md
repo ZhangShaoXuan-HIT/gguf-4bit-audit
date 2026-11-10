@@ -1,28 +1,50 @@
 <div align="center">
 
-# The cost of 4-bit deployment depends on model size
+# A nominal 4-bit label does not fix the cost
 
-**A paired audit of accuracy and calibration in 0.5B–3B instruction-tuned LLMs**
+**Paired audit of GGUF k-quant artifacts from 0.5B to 3B**
 
 </div>
 
 Code, source data and figures for a study of what the 8-bit → 4-bit quantization step
-costs in accuracy and calibration, measured across four instruction-tuned models
-(0.5B–3B) quantized as GGUF k-quants.
+costs in accuracy and calibration across four instruction-tuned models (0.5B–3B)
+quantized as GGUF k-quants. The finding is that the cost is a property of the
+artifact, not of the bit-width label.
 
 ## What the study finds
 
-The 4-bit step costs more accuracy, and more calibration, the smaller the model:
+Under one nominal label, Q4_K_M, the accuracy cost spans a factor of twenty:
 
-| Size | Accuracy change at Q4 | ECE change at Q4 |
+| Model | Accuracy change at Q4_K_M | ECE change (stated conf.) |
 |---|---|---|
-| 0.5B | **−10.9%** | **+0.071** |
-| 1B | −7.9% | +0.034 |
-| 3B (pooled) | −1.9% | ≤ +0.015 |
+| Qwen2.5-0.5B | **−10.9%** | **+0.071** |
+| Gemma-3-1B | −7.9% | +0.034 |
+| Qwen2.5-3B | −4.0% | +0.015 |
+| Llama-3.2-3B | +0.3% | +0.004 |
 
-Measured relative to each model's own Q8_0 accuracy. The size interaction is
-significant at p < 0.0001 against both 1B and 3B; the 0.5B-vs-1B contrast is not
-resolved at this sample size.
+Measured relative to each model's own Q8_0 accuracy.
+
+Two results do not depend on a size story. First, the Qwen2.5-0.5B Q4_K_M
+artifact scores **3.0 points below the coarser Q3_K_M** on matched items
+(p < 0.001), and an artifact from a second, independent quantizer reproduces the
+inversion: `d01_check.py` re-measures it at 0.338 against 0.337 on ARC-Challenge
+and 0.329 against 0.316 on MMLU, both below Q3_K_M. Second, the apparent size
+trend is not separable from which artifact each model was issued. Replacing
+Q4_K_M with Q3_K_M reverses the ordering (`robustness_q3.py`): 0.5B loses 4.7%,
+1B loses 9.3% and Qwen2.5-3B loses 11.6%.
+
+The interaction with size is significant against a pooled 3B tier (p ≤ 0.0004)
+but not against Qwen2.5-3B alone (p = 0.19).
+
+Within each ladder the memory saved and the accuracy lost are badly matched. At
+0.5B, **106 MB** is given up for 1.0 accuracy point going 8→5 bit, while
+**21 MB** costs 4.2 points going 5→4 bit.
+
+On calibration, stated confidence inflates only in the smallest model (0.862 to
+0.922 while accuracy falls). At 1B and 3B stated confidence is flat or lower, and
+the rise in calibration error there is largely the fall in accuracy. On
+token-probability confidence the 0.5B inflation is three times smaller and no
+size gradient remains.
 
 Within a model, the memory saved and the accuracy lost are badly matched across the
 ladder. At 0.5B, **106 MB** is given up for 1.0 accuracy point going 8→5 bit, while
@@ -49,6 +71,8 @@ PROTOCOL.md                                                 prompts, schema, see
 ```
 
 Every number in the paper is recomputable from `figures/source_data/` without a GPU.
+Twelve source-data tables are included, one per figure panel plus the comparator
+and robustness tables.
 The full per-item records (70,394 responses with token log-probabilities, ~2.3 GB)
 are archived separately — see *Data availability* below.
 
