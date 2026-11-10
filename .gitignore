@@ -1,0 +1,28 @@
+# Per-item records (~2.3 GB) are archived on Zenodo, not in git.
+results/full/
+results/pilot/
+results/smoke/
+
+# Datasets are re-downloaded by data_loaders.py.
+data/
+
+# Downloaded GGUF artifacts.
+*.gguf
+models/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Matplotlib QA overlays (regenerated on demand)
+figures/nature/*.alignment.svg
+figures/nature/*.alignment.json
+figures/nature/*.collision.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,11 @@
+role,variant,quant,source_repo,file_mb,sha256,task,n,acc
+primary,bartowski,Q8_0,bartowski/Qwen2.5-0.5B-Instruct-GGUF,506.5,,arc_challenge,800,0.4125
+primary,bartowski,Q8_0,bartowski/Qwen2.5-0.5B-Instruct-GGUF,506.5,,mmlu,800,0.37625
+primary,bartowski,Q5_K_M,bartowski/Qwen2.5-0.5B-Instruct-GGUF,400.6,,arc_challenge,800,0.42125
+primary,bartowski,Q5_K_M,bartowski/Qwen2.5-0.5B-Instruct-GGUF,400.6,,mmlu,800,0.375
+primary,bartowski,Q4_K_M,bartowski/Qwen2.5-0.5B-Instruct-GGUF,379.38,6eb923e7d26e9cea28811e1a8e852009b21242fb157b26149d3b188f3a8c8653,arc_challenge,800,0.33625
+primary,bartowski,Q4_K_M,bartowski/Qwen2.5-0.5B-Instruct-GGUF,379.38,6eb923e7d26e9cea28811e1a8e852009b21242fb157b26149d3b188f3a8c8653,mmlu,800,0.31625
+primary,bartowski,Q3_K_M,bartowski/Qwen2.5-0.5B-Instruct-GGUF,339.0,,arc_challenge,800,0.40625
+primary,bartowski,Q3_K_M,bartowski/Qwen2.5-0.5B-Instruct-GGUF,339.0,,mmlu,800,0.38625
+verification,qwen-official,Q4_K_M,Qwen/Qwen2.5-0.5B-Instruct-GGUF,468.64,74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db,arc_challenge,800,0.3375
+verification,qwen-official,Q4_K_M,Qwen/Qwen2.5-0.5B-Instruct-GGUF,468.64,74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db,mmlu,800,0.32875

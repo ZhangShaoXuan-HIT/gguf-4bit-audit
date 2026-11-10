@@ -1,0 +1,12 @@
+# Runtime dependencies for the evaluation harness and figure generation.
+#
+# Inference happens in Ollama, not in-process, so torch is deliberately absent.
+# bitsandbytes is not used either: quantization comes from pre-quantized GGUF
+# files, which also avoids the lack of a usable Windows build.
+#
+# Versions below are the ones the reported numbers were produced with.
+
+numpy>=2.0
+pandas>=2.0
+pyarrow>=14.0
+matplotlib>=3.7

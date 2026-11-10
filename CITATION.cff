@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the manuscript below."
+title: "The Cost of 4-bit Deployment Depends on Model Size: A Paired Audit of Accuracy and Calibration in 0.5B-3B Instruction-Tuned LLMs"
+type: software
+authors:
+  - family-names: "Zhang"
+    given-names: "ShaoXuan"
+repository-code: "https://github.com/ZhangShaoXuan-HIT/gguf-4bit-audit"
+url: "https://github.com/ZhangShaoXuan-HIT/gguf-4bit-audit"
+license: MIT
+keywords:
+  - quantization
+  - GGUF
+  - calibration
+  - uncertainty
+  - small language models
+version: "1.0.0"
+date-released: "2025-11-10"
