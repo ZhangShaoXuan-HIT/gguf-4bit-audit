@@ -13,7 +13,7 @@ All panels derive from 70,394 scored responses. Statistics: two-sided paired boo
 
 ---
 
-## Fig. 2 | The calibration cost of the 4-bit step follows the same size gradient
+## Fig. 2 | The 4-bit step raises calibration error in every model, most strongly at the smallest
 
 **a**, Expected calibration error (ECE) across the quantization ladder for the same four models. ECE is computed within each task over 15 equal-width confidence bins and then averaged across tasks; pooling items across tasks before computing ECE would mix tasks with very different accuracy and confidence distributions and inflates the estimate. Lower is better. The shaded band marks Q4_K_M. **b**, Reliability of the smallest and largest Qwen models: empirical accuracy against stated confidence, binned at 10 equal widths with bins holding fewer than 20 items omitted. Filled circles are Q4_K_M and open squares are Q8_0; colour identifies the model. Marker area is proportional to the number of items in the bin. Stated confidence is not continuous — it concentrates on round values, so each condition occupies only two to five bins and the bins are plotted as markers rather than connected as a curve. Points below the dashed diagonal indicate over-confidence. **c**, Increase in ECE from Q8_0 to Q4_K_M for each model, with 95% paired-bootstrap intervals over items resampled within task (2,000 resamples per model). The estimates are ordered by size class, from +0.071 at 0.5B to +0.015 and +0.004 for the two 3B models; the Llama interval includes zero. This panel shows the stated-confidence channel only. Table 4 reports the same contrast on token-probability confidence, where the ordering by size does not hold. The grey band marks no change.
 

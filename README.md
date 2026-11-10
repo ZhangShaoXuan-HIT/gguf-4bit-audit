@@ -45,11 +45,20 @@ figures/build_source_data.py  figures/make_figures_nature.py
 figures/source_data/*.csv                                   one CSV per figure panel
 figures/nature/                                             PDF / SVG / PNG + legends
 results/d01/*.jsonl                                         cross-quantizer verification records
+PROTOCOL.md                                                 prompts, schema, seeds, extraction rules
 ```
 
 Every number in the paper is recomputable from `figures/source_data/` without a GPU.
 The full per-item records (70,394 responses with token log-probabilities, ~2.3 GB)
 are archived separately — see *Data availability* below.
+
+## Reproducing
+
+The exact prompts, JSON schema, decoding parameters, answer-extraction rules,
+confidence normalisation, sampling seeds and bootstrap counts are all in
+[`PROTOCOL.md`](PROTOCOL.md), which mirrors the manuscript appendix. Read it
+before running anything: several of the rules exist to close a specific failure
+mode that produced plausible but wrong numbers.
 
 ## Reproducing
 
