@@ -39,7 +39,6 @@ Run
 """
 from __future__ import annotations
 
-import os
 import sys
 from pathlib import Path
 
@@ -58,17 +57,8 @@ SD = ROOT / "figures" / "source_data"
 OUTDIR = ROOT / "figures" / "nature"
 OUTDIR.mkdir(parents=True, exist_ok=True)
 
-# The panel-alignment gate is optional tooling. If the audit helper is not
-# installed, export proceeds without it so the figures still reproduce from the
-# shipped source data.
-_ALIGN_DIR = os.environ.get("NATURE_FIGURE_SCRIPTS", "")
-if _ALIGN_DIR:
-    sys.path.insert(0, _ALIGN_DIR)
-try:
-    from audit_panel_alignment import require_matplotlib_panel_alignment  # noqa: E402
-except ImportError:  # pragma: no cover - fallback for environments without the helper
-    def require_matplotlib_panel_alignment(fig, **kwargs):  # noqa: D401
-        return None
+sys.path.insert(0, r"C:\Users\18372\.dsh\skills\nature-figure\scripts")
+from audit_panel_alignment import require_matplotlib_panel_alignment  # noqa: E402
 
 # ---------------------------------------------------------------- style
 mpl.rcParams.update({
@@ -246,7 +236,7 @@ def figure1() -> None:
     ax.set_ylabel("Δ accuracy at Q4 (% of own 8-bit)")
     ax.set_title("Cost of the 4-bit step", loc="left", pad=21,
                  fontweight="bold")
-    ax.text(0.0, 1.015, "1B vs 3B: p < 0.0001", transform=ax.transAxes,
+    ax.text(0.0, 1.015, "1B vs pooled 3B: p = 0.0004", transform=ax.transAxes,
             fontsize=6.3, color=MUTED, ha="left", va="bottom")
     panel_label(ax, "b")
 
