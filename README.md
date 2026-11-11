@@ -8,8 +8,9 @@
 
 Code, source data and figures for a study of what the 8-bit → 4-bit quantization step
 costs in accuracy and calibration across four instruction-tuned models (0.5B–3B)
-quantized as GGUF k-quants. The finding is that the cost is a property of the
-artifact, not of the bit-width label.
+quantized as GGUF k-quants. The finding is that a nominal bit-width does not fix
+the cost: it depends on the model it is applied to, and within one model the
+ordering of levels is not guaranteed.
 
 ## What the study finds
 
@@ -46,10 +47,11 @@ Measured relative to each model's own Q8_0 accuracy.
 
 Two results do not depend on a size story. First, the Qwen2.5-0.5B Q4_K_M
 artifact scores **3.0 points below the coarser Q3_K_M** on matched items
-(p < 0.001), and an artifact from a second, independent quantizer reproduces the
-inversion: `d01_check.py` re-measures it at 0.338 against 0.337 on ARC-Challenge
-and 0.329 against 0.316 on MMLU, both below Q3_K_M. Second, the apparent size
-trend is not separable from which artifact each model was issued. Replacing
+(p < 0.001), and a file from a second publisher reproduces the inversion:
+`d01_check.py` re-measures it at 0.338 against 0.337 on ARC-Challenge and 0.329
+against 0.316 on MMLU, both below Q3_K_M. That the inversion survives a change of
+publisher is evidence that it belongs to the model at that level, not to one
+upload. Second, the apparent size trend rests on a single model. Replacing
 Q4_K_M with Q3_K_M reverses the ordering (`robustness_q3.py`): 0.5B loses 4.7%,
 1B loses 9.3% and Qwen2.5-3B loses 11.6%.
 
