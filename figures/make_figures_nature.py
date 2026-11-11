@@ -357,7 +357,7 @@ def figure2() -> None:
     ax.set_ylim(0.12, 0.60)
     ax.set_xlabel("quantization level  (8-bit → 2-bit)")
     ax.set_ylabel("expected calibration error\n(lower is better)")
-    ax.set_title("Calibration error rises at the 4-bit step in every model",
+    ax.set_title("Calibration error rises at the 4-bit step in three of four models",
                  loc="left", pad=21, fontweight="bold")
     series_legend(ax)
     panel_label(ax, "a")
