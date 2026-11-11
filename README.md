@@ -1,6 +1,6 @@
 <div align="center">
 
-# A nominal 4-bit label does not fix the cost
+# Format failure hides inside accuracy
 
 **Paired audit of GGUF k-quant artifacts from 0.5B to 3B**
 
@@ -8,9 +8,10 @@
 
 Code, source data and figures for a study of what the 8-bit → 4-bit quantization step
 costs in accuracy and calibration across four instruction-tuned models (0.5B–3B)
-quantized as GGUF k-quants. The finding is that a nominal bit-width does not fix
-the cost: it depends on the model it is applied to, and within one model the
-ordering of levels is not guaranteed.
+quantized as GGUF k-quants. The finding is that an accuracy benchmark cannot
+distinguish a model that knows less from one that has stopped answering, and that
+at 4 bits this distinction is large. The level which breaks is not predictable
+from the label or from its neighbours.
 
 ## What the study finds
 
