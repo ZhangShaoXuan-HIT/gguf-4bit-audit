@@ -13,6 +13,26 @@ artifact, not of the bit-width label.
 
 ## What the study finds
 
+Under one nominal label, Q4_K_M, the accuracy cost ranges from a null result to a
+10.9% loss, and part of that cost is lost format compliance rather than lost
+knowledge. The table gives both accounting conventions:
+
+| Model | Served (all responses) | Capability (answering responses only) | Non-answer rate Q8_0 to Q4_K_M |
+|---|---|---|---|
+| Qwen2.5-0.5B | **-10.9%** | **-9.0%** | 4.0% to **20.2%** |
+| Gemma-3-1B | -7.9% | -6.8% | 1.5% to 2.0% |
+| Qwen2.5-3B | -4.0% | -3.1% | 5.0% to 8.0% |
+| Llama-3.2-3B | +0.3% | +0.4% | 0.0% to 0.1% |
+
+The gap between the columns is format failure. 4,273 responses (6.1%) either echo
+the prompt placeholder verbatim, as in `{"answer": "<letter A-D>", "confidence": 95}`,
+or answer outside the permitted vocabulary. They occur in neither Gemma-3-1B nor
+Llama-3.2-3B at any level, and they concentrate in the two Qwen models at
+particular levels. `recompute_two_conventions.py` regenerates the table and
+`figures/source_data/failure_modes.csv` gives every category by cell.
+
+The older single-convention table, still useful as the served view:
+
 Under one nominal label, Q4_K_M, the accuracy cost spans a factor of twenty:
 
 | Model | Accuracy change at Q4_K_M | ECE change (stated conf.) |
